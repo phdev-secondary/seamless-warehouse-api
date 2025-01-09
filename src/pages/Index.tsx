@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { KpiWidget } from "@/components/dashboard/KpiWidget";
-import { Package2, Truck, Users, Warehouse } from "lucide-react";
-
-// Mock user role for demonstration
-const userRole = "admin";
+import { Sidebar } from "@/components/Sidebar";
+import { Introduction } from "@/components/docs/Introduction";
+import { SecuritySection } from "@/components/docs/SecuritySection";
+import { InventorySection } from "@/components/docs/InventorySection";
+import { OrdersSection } from "@/components/docs/OrdersSection";
+import { WarehouseSection } from "@/components/docs/WarehouseSection";
+import { SupplierSection } from "@/components/docs/SupplierSection";
+import { WebhooksSection } from "@/components/docs/WebhooksSection";
+import { ComplianceSection } from "@/components/docs/ComplianceSection";
+import { ScalabilitySection } from "@/components/docs/ScalabilitySection";
 
 const sections = [
   {
@@ -90,72 +93,18 @@ const sections = [
   },
 ];
 
-const roleBasedKpis = {
-  admin: [
-    {
-      title: "Total Orders",
-      value: "1,234",
-      icon: <Package2 className="h-4 w-4" />,
-      trend: { value: 12, isPositive: true },
-    },
-    {
-      title: "Active Users",
-      value: "573",
-      icon: <Users className="h-4 w-4" />,
-      trend: { value: 8, isPositive: true },
-    },
-    {
-      title: "Warehouse Capacity",
-      value: "78%",
-      icon: <Warehouse className="h-4 w-4" />,
-      description: "Current storage utilization",
-    },
-    {
-      title: "Pending Shipments",
-      value: "45",
-      icon: <Truck className="h-4 w-4" />,
-      trend: { value: 5, isPositive: false },
-    },
-  ],
-  manager: [
-    // Add manager-specific KPIs
-  ],
-  worker: [
-    // Add worker-specific KPIs
-  ],
-  supplier: [
-    // Add supplier-specific KPIs
-  ],
-};
-
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate initial data loading
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <DashboardLayout isLoading={isLoading} navigation={sections}>
-      <div className="space-y-8">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Warehouse Management System
-        </h1>
-        
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {roleBasedKpis[userRole as keyof typeof roleBasedKpis]?.map((kpi, index) => (
-            <KpiWidget key={index} {...kpi} />
-          ))}
-        </div>
-
-        <div className="border-t">
-          <div className="bg-background">
-            <div className="grid lg:grid-cols-5">
-              <div className="col-span-3 lg:col-span-4">
-                <div className="h-full px-4 py-6 lg:px-8">
-                  <div className="max-w-4xl mx-auto">
+    <div className="border-t">
+      <div className="bg-background">
+        <div className="grid lg:grid-cols-5">
+          <Sidebar className="hidden lg:block" sections={sections} />
+          <div className="col-span-3 lg:col-span-4 lg:border-l">
+            <div className="h-full px-4 py-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-8">
+                  Warehouse Management System API
+                </h1>
                 <Introduction />
                 <SecuritySection />
                 <InventorySection />
@@ -165,14 +114,12 @@ const Index = () => {
                 <WebhooksSection />
                 <ComplianceSection />
                 <ScalabilitySection />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 
