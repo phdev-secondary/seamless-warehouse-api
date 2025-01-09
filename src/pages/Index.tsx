@@ -3,8 +3,11 @@ import { Introduction } from "@/components/docs/Introduction";
 import { SecuritySection } from "@/components/docs/SecuritySection";
 import { InventorySection } from "@/components/docs/InventorySection";
 import { OrdersSection } from "@/components/docs/OrdersSection";
+import { WarehouseSection } from "@/components/docs/WarehouseSection";
+import { SupplierSection } from "@/components/docs/SupplierSection";
 import { WebhooksSection } from "@/components/docs/WebhooksSection";
 import { ComplianceSection } from "@/components/docs/ComplianceSection";
+import { ScalabilitySection } from "@/components/docs/ScalabilitySection";
 
 const sections = [
   {
@@ -106,8 +109,11 @@ const Index = () => {
                 <SecuritySection />
                 <InventorySection />
                 <OrdersSection />
+                <WarehouseSection />
+                <SupplierSection />
                 <WebhooksSection />
                 <ComplianceSection />
+                <ScalabilitySection />
               </div>
             </div>
           </div>
